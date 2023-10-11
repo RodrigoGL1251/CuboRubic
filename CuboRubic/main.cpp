@@ -16,9 +16,10 @@ int main(int argc, char** argv)
     glutInitWindowSize(500, 500);                   //Establecemos tamaño de la pantalla
     glutCreateWindow("Cubo Rubik");                 //Nombre de la ventana
     glEnable(GL_DEPTH_TEST);                        //permite 3d y rotacion
-    //glutCreateWindow(argv[0]);                      //creamos pantalla
+    //glutCreateWindow(argv[0]);                    //creamos pantalla
 
     glutDisplayFunc(display);                       //Dibujamos pantalla
+    
     glutMainLoop();
 
     return 0;
