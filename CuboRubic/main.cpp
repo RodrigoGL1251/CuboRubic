@@ -1,5 +1,7 @@
 #include <GL/glut.h>
 #include<iostream>
+#include"Vector3.h"
+
 
 enum DirectionOfRotation {
     rigth,
@@ -10,12 +12,11 @@ enum DirectionOfRotation {
 void display(void);
 void generateCube(float size, float x, float y, float z);
 void generateCubeRubik(float size, float x, float y, float z);
-void rotateRubik();
-void rotateFace();
-void rotateTop();
-void rotateBottom();
-void transformations();
+void generateMatrizRubik(int x, int y, int z);
+void printMatriz();
 
+DirectionOfRotation directionOfrotation;
+Vector3 rubikMatriz[3][3][3]{ };
 
 float m_rotate_x = 0;
 float m_rotate_y = 0;
@@ -23,10 +24,11 @@ bool m_rotateFace = false;
 bool m_rotateTop = false;
 bool m_rotateBottom = false;
 bool m_rotateRubik = false;
-DirectionOfRotation directionOfrotation;
 
 int main(int argc, char** argv)
 {
+    generateMatrizRubik(0,0,0);
+    printMatriz();
     glutInit(&argc, argv);                          //inicia el glut
     glutInitDisplayMode(GLUT_DEPTH| GLUT_DOUBLE | GLUT_RGBA); //Estable ce la pantalla con doble buffer con los colores rgba
     glutInitWindowPosition(50, 50);                 //establecemos posicion de la pantalla
@@ -63,7 +65,7 @@ void display(void) {
 void generateCube(float size, float x, float y, float z) {
     float halfSize = size / 2;
     //Front
-    glBegin(GL_POLYGON);                                      //dibujando un cuadrado
+    glBegin(GL_POLYGON);                                     //dibujando un cuadrado
     glColor3f(0, 0, 1);                                     //color del cuadrado azul
     glVertex3f(x - halfSize, y + halfSize, z + halfSize);   //Coordenadas del vertice superior izquierdo
     glVertex3f(x - halfSize, y - halfSize, z + halfSize);
@@ -114,34 +116,32 @@ void generateCube(float size, float x, float y, float z) {
 
 void generateCubeRubik(float size, float x, float y, float z) {
     float thirdOfSize = size / 3;
-    for (int i = -1; i < 2; i++) {
-        for (int j = -1; j < 2; j++) {
-            for (int k = -1; k < 2; k++) {
-                generateCube(thirdOfSize-0.025, x + thirdOfSize * i, y + thirdOfSize * j, z + thirdOfSize * k);
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+                generateCube(thirdOfSize-0.025, x + thirdOfSize * rubikMatriz[i][j][k].x, y + thirdOfSize * rubikMatriz[i][j][k].y, z + thirdOfSize * rubikMatriz[i][j][k].z);
             }
         }
     }
 }
 
-void rotateRubik() {
-
+void generateMatrizRubik(int x, int y, int z) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+                rubikMatriz[i][j][k] = Vector3(x + i - 1,y + j - 1,z +
+ k - 1);
+            }
+        }
+    }
 }
 
-void rotateFace() {
-
-}
-
-void rotateTop() {
-
-}
-
-void rotateBottom() {
-
-}
-
-void transformations() {
-    rotateRubik();
-    rotateFace();
-    rotateTop();
-    rotateBottom();
+void printMatriz() {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+                std::cout << " " << rubikMatriz[i][j][k].x << " " << rubikMatriz[i][j][k].y << " " << rubikMatriz[i][j][k].z << std::endl;
+            }
+        }
+    }
 }
