@@ -1,12 +1,29 @@
 #include <GL/glut.h>
 #include<iostream>
 
+enum DirectionOfRotation {
+    rigth,
+    left,
+    top,
+    botttom
+};
 void display(void);
 void generateCube(float size, float x, float y, float z);
 void generateCubeRubik(float size, float x, float y, float z);
+void rotateRubik();
+void rotateFace();
+void rotateTop();
+void rotateBottom();
+void transformations();
 
-float rotate_x = 0;
-float rotate_y = 0;
+
+float m_rotate_x = 0;
+float m_rotate_y = 0;
+bool m_rotateFace = false;
+bool m_rotateTop = false;
+bool m_rotateBottom = false;
+bool m_rotateRubik = false;
+DirectionOfRotation directionOfrotation;
 
 int main(int argc, char** argv)
 {
@@ -16,13 +33,16 @@ int main(int argc, char** argv)
     glutInitWindowSize(500, 500);                   //Establecemos tamaño de la pantalla
     glutCreateWindow("Cubo Rubik");                 //Nombre de la ventana
     glEnable(GL_DEPTH_TEST);                        //permite 3d y rotacion
-    //glutCreateWindow(argv[0]);                    //creamos pantalla
 
     glutDisplayFunc(display);                       //Dibujamos pantalla
     
     glutMainLoop();
 
     return 0;
+}
+
+void specialKey() {
+    
 }
 
 void display(void) {
@@ -101,4 +121,27 @@ void generateCubeRubik(float size, float x, float y, float z) {
             }
         }
     }
+}
+
+void rotateRubik() {
+
+}
+
+void rotateFace() {
+
+}
+
+void rotateTop() {
+
+}
+
+void rotateBottom() {
+
+}
+
+void transformations() {
+    rotateRubik();
+    rotateFace();
+    rotateTop();
+    rotateBottom();
 }
