@@ -115,7 +115,7 @@ void generateCubeRubik(float size, float x, float y, float z) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             for (int k = 0; k < 3; k++) {
-                generateCube(thirdOfSize-0.025, x + thirdOfSize * m_rubik.rubikMatriz[i][j][k].x, y + thirdOfSize * m_rubik.rubikMatriz[i][j][k].y, z + thirdOfSize * m_rubik.rubikMatriz[i][j][k].z);
+                generateCube(thirdOfSize-0.025, x + thirdOfSize * m_rubik.m_rubikMatriz[i][j][k].x, y + thirdOfSize * m_rubik.m_rubikMatriz[i][j][k].y, z + thirdOfSize * m_rubik.m_rubikMatriz[i][j][k].z);
             }
         }
     }
