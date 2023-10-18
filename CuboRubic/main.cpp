@@ -1,6 +1,7 @@
 #include <GL/glut.h>
 #include<iostream>
 #include"Rubik.h"
+#include <ctime>
 
 
 enum DirectionOfRotation {
@@ -16,6 +17,10 @@ void generateCubeRubik(float size, float x, float y, float z);
 DirectionOfRotation directionOfrotation;
 Rubik m_rubik = Rubik();
 
+unsigned t0, t1;
+double m_time;
+double m_deltaTime;
+double m_previousTime;
 float m_rotate_x = 0;
 float m_rotate_y = 0;
 bool m_rotateFace = false;
@@ -25,6 +30,7 @@ bool m_rotateRubik = false;
 
 int main(int argc, char** argv)
 {
+    t0 = clock();
     glutInit(&argc, argv);                          //inicia el glut
     glutInitDisplayMode(GLUT_DEPTH| GLUT_DOUBLE | GLUT_RGBA); //Estable ce la pantalla con doble buffer con los colores rgba
     glutInitWindowPosition(50, 50);                 //establecemos posicion de la pantalla
@@ -52,7 +58,14 @@ void display(void) {
     gluPerspective(60, 1, 1, 100);         //Proyeccion perspectiva dentro del cubo señalado
     glTranslatef(0, 0, -2);                 //Alejando el cuadrado del observador dos unidades en el eje z
     glMatrixMode(GL_MODELVIEW);         //Modo de modelado
-    generateCubeRubik(0.8, 0, 0, 0);    //Genera los 27 cubos del rubik
+
+    m_time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    m_previousTime = m_time;
+    //
+      // m_rubik.rotateAxisX(90 * m_deltaTime, Front);
+        generateCubeRubik(0.8, 0, 0, 0);    //Genera los 27 cubos del rubik
+        m_time = (double(t1 - t0) / CLOCKS_PER_SEC);
+        m_deltaTime = m_time - m_previousTime;
 
     glFlush();                          //forzando el dibujado
     glutSwapBuffers();
