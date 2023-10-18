@@ -147,7 +147,7 @@ Vector3 Transformaciones::RotateY(float grados, Vector3 position)
 
 
 //Rotar en el eje z
- static Vector3 RotateZ(float grados, Vector3 position)
+ Vector3 Transformaciones::RotateZ(float grados, Vector3 position)
 {
     //Convertir grados a radianes
     float radian = (grados * PI) / 180;

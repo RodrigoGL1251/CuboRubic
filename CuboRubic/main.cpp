@@ -1,6 +1,6 @@
 #include <GL/glut.h>
 #include<iostream>
-#include"Vector3.h"
+#include"Rubik.h"
 
 
 enum DirectionOfRotation {
@@ -12,11 +12,9 @@ enum DirectionOfRotation {
 void display(void);
 void generateCube(float size, float x, float y, float z);
 void generateCubeRubik(float size, float x, float y, float z);
-void generateMatrizRubik(int x, int y, int z);
-void printMatriz();
 
 DirectionOfRotation directionOfrotation;
-Vector3 rubikMatriz[3][3][3]{ };
+Rubik m_rubik = Rubik();
 
 float m_rotate_x = 0;
 float m_rotate_y = 0;
@@ -27,8 +25,6 @@ bool m_rotateRubik = false;
 
 int main(int argc, char** argv)
 {
-    generateMatrizRubik(0,0,0);
-    printMatriz();
     glutInit(&argc, argv);                          //inicia el glut
     glutInitDisplayMode(GLUT_DEPTH| GLUT_DOUBLE | GLUT_RGBA); //Estable ce la pantalla con doble buffer con los colores rgba
     glutInitWindowPosition(50, 50);                 //establecemos posicion de la pantalla
@@ -119,28 +115,7 @@ void generateCubeRubik(float size, float x, float y, float z) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             for (int k = 0; k < 3; k++) {
-                generateCube(thirdOfSize-0.025, x + thirdOfSize * rubikMatriz[i][j][k].x, y + thirdOfSize * rubikMatriz[i][j][k].y, z + thirdOfSize * rubikMatriz[i][j][k].z);
-            }
-        }
-    }
-}
-
-void generateMatrizRubik(int x, int y, int z) {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            for (int k = 0; k < 3; k++) {
-                rubikMatriz[i][j][k] = Vector3(x + i - 1,y + j - 1,z +
- k - 1);
-            }
-        }
-    }
-}
-
-void printMatriz() {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            for (int k = 0; k < 3; k++) {
-                std::cout << " " << rubikMatriz[i][j][k].x << " " << rubikMatriz[i][j][k].y << " " << rubikMatriz[i][j][k].z << std::endl;
+                generateCube(thirdOfSize-0.025, x + thirdOfSize * m_rubik.rubikMatriz[i][j][k].x, y + thirdOfSize * m_rubik.rubikMatriz[i][j][k].y, z + thirdOfSize * m_rubik.rubikMatriz[i][j][k].z);
             }
         }
     }
