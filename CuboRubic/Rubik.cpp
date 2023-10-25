@@ -1,73 +1,30 @@
 #include "Rubik.h"
 #include "Transformaciones.h"
 
-
-
-Rubik::Rubik() {
-    generateMatrizRubik(0,0,0);
+Rubik::Rubik()
+{
+    m_size = 1;
+    m_pivot = Vector3();
+    generateCubeMatrix();
+}
+Rubik::Rubik(Vector3 pivot, float size) {
+    m_size = size;
+    m_pivot = pivot;
+    generateCubeMatrix();
 }
 
-void Rubik::generateMatrizRubik(int x, int y, int z) {
+
+
+void Rubik::generateCubeMatrix() {
+    float thirdOfSize = m_size / 3;
+    Vector3 cubePivot;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             for (int k = 0; k < 3; k++) {
-                m_rubikMatriz[i][j][k] = Vector3(x + i - 1, y + j - 1, z +
-                    k - 1);
+                cubePivot = Vector3(i * thirdOfSize - thirdOfSize, j * thirdOfSize - thirdOfSize, k * thirdOfSize - thirdOfSize);
+                m_cubeMatriz[i][j][k] = Cube(cubePivot, thirdOfSize-0.01, Vector4());
             }
         }
     }
 }
 
-bool Rubik::rotateAxisX(float angle, Face face) {
-    Vector3 faceToRotate[3][3]{};
-    bool rotationcomplete = false;
-    
-    switch (face)
-    {
-    case Front:
-        //Rotando los vectores de la cara de la matriz
-        for (int i = 0; i < 3; i++) {
-            for (int y = 0; y < 3; y++) {
-                m_rubikMatriz[0][i][y] = Transformaciones::RotateZ(90, m_rubikMatriz[0][i][y]);
-            }
-        }        
-        
-        if (m_rubikMatriz[0][0][0].y == 0 && m_rubikMatriz[0][0][0].z == 0) {
-            //Copiando una parte de la matriz del cubo
-            for (int i = 0; i < 3; i++) {
-                for (int y = 0; y < 3; y++) {
-                    faceToRotate[i][y] = m_rubikMatriz[0][i][y];
-                }
-            }
-            
-            int x;
-            int y = 2;
-            for (int i = 0; i < 3; i++) {
-                x = 0;
-                for (int j = 0; j < 3; j++) {
-                    m_rubikMatriz[0][x][y] = faceToRotate[i][j];
-                    x++;
-                }
-                y--;
-            }
-            rotationcomplete = true;
-        }        
-        break;
-    case Midel:
-
-        break;
-    case Back:
-
-        break;
-    default:
-        break;
-    }
-
-    return rotationcomplete;
-}
-bool Rubik::rotateAxisY(float angle, Face face) {
-    return false;
-}
-bool Rubik::rotateAxisZ(float angle, Face face) {
-    return false;
-}

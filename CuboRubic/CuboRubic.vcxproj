@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Face.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rubik.cpp" />
     <ClCompile Include="Transformaciones.cpp" />
@@ -26,6 +28,8 @@
     <ClCompile Include="Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="Face.h" />
     <ClInclude Include="Rubik.h" />
     <ClInclude Include="Transformaciones.h" />
     <ClInclude Include="Vector3.h" />
