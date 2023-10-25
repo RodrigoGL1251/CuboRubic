@@ -50,7 +50,8 @@ void update() {
             for (int k = 0; k < 3; k++) {
                 for (int l = 0; l < 6; l++) {
                     for (int m = 0; m < 4; m++) {
-                        m_rubik.m_cubeMatriz[0][j][k].m_faces[l].m_vertex[m] = Transformaciones::RotateY(0.52, m_rubik.m_cubeMatriz[0][j][k].m_faces[l].m_vertex[m]);
+                        m_rubik.m_cubeMatriz[i][2][k].m_faces[l].m_vertex[m] = Transformaciones::RotateY(0.52, m_rubik.m_cubeMatriz[i][2][k].m_faces[l].m_vertex[m]);
+                        m_rubik.m_cubeMatriz[i][0][k].m_faces[l].m_vertex[m] = Transformaciones::RotateY(-0.52, m_rubik.m_cubeMatriz[i][0][k].m_faces[l].m_vertex[m]);
                     }
                 }
             }
