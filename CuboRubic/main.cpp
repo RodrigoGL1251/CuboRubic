@@ -17,8 +17,7 @@ enum DirectionOfRotation {
 
 
 void display(void);
-void generateCube(/*float size, float x, float y, float z*/);
-//void generateCubeRubik(float size, float x, float y, float z);
+void generateCube();
 void input(unsigned char key, int x, int y);
 void update();
 
@@ -44,19 +43,8 @@ int main(int argc, char** argv)
 
     return 0;
 }
-void update() {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            for (int k = 0; k < 3; k++) {
-                for (int l = 0; l < 6; l++) {
-                    for (int m = 0; m < 4; m++) {
-                        m_rubik.m_cubeMatriz[i][2][k].m_faces[l].m_vertex[m] = Transformaciones::RotateY(0.52, m_rubik.m_cubeMatriz[i][2][k].m_faces[l].m_vertex[m]);
-                        m_rubik.m_cubeMatriz[i][0][k].m_faces[l].m_vertex[m] = Transformaciones::RotateY(-0.52, m_rubik.m_cubeMatriz[i][0][k].m_faces[l].m_vertex[m]);
-                    }
-                }
-            }
-        }
-    }
+void update() {    
+    m_rubik.rotationManager();
     glutPostRedisplay();
 }
 
@@ -69,14 +57,13 @@ void display(void) {
     gluPerspective(60, 1, 1, 100);                          //Proyeccion perspectiva dentro del cubo señalado
     glTranslatef(0, 0, -2);                                 //Alejando el cuadrado del observador dos unidades en el eje z
     glMatrixMode(GL_MODELVIEW);                             //Modo de modelado
-    //generateCubeRubik(0.8, 0, 0, 0);                        //Genera los 27 cubos del rubik
     generateCube();
 
     /*glFlush();*/                                          //forzando el dibujado
     glutSwapBuffers();                                      //cambiando de buffer para que se vea mas fluida(se necesita doble buffer)
 }
 
-void generateCube(/*float size, float x, float y, float z*/) {
+void generateCube() {
     Vector3 color;
     Vector3 vertex;
     for (int i = 0; i < 3; i++){
@@ -149,94 +136,34 @@ void generateCube(/*float size, float x, float y, float z*/) {
     //glEnd();
 }
 
-//void generateCubeRubik(float size, float x, float y, float z) {
-//    float thirdOfSize = size / 3;
-//    for (int i = 0; i < 3; i++) {
-//        for (int j = 0; j < 3; j++) {
-//            for (int k = 0; k < 3; k++) {
-//                generateCube(thirdOfSize-0.025, x + thirdOfSize * m_rubik.m_cubeMatriz[i][j][k].x, y + thirdOfSize * m_rubik.m_cubeMatriz[i][j][k].y, z + thirdOfSize * m_rubik.m_cubeMatriz[i][j][k].z);
-//            }
-//        }
-//    }
-//}
+void input(unsigned char key, int x, int y) {    
+    if (m_rubik.m_isRotating) {
+        return;
+    }
 
-void input(unsigned char key, int x, int y) {
-    /*if (m_rubik.m_isRotatingFrontX && m_rubik.m_isRotatingMidleX && m_rubik.m_isRotatingBackX && m_rubik.m_isRotatingFrontY && m_rubik.m_isRotatingMidleY && m_rubik.m_isRotatingBackY && m_rubik.m_isRotatingFrontZ && m_rubik.m_isRotatingMidleZ && m_rubik.m_isRotatingBackZ) {
-        switch (key) {
-        case 'q':
-            m_rubik.m_isRotatingBackX = true;
-            m_rubik.m_rotateDirection = 1;
+    switch (key) {
+        case '1':
+            m_rubik.setAndStartRotationFace(Front);
             break;
-        case 'a':
-            m_rubik.m_isRotatingMidleX = true;
-            m_rubik.m_rotateDirection = 1;
+        case '2':            
+            m_rubik.setAndStartRotationFace(Back);
             break;
-        case 'z':
-            m_rubik.m_isRotatingFrontX = true;
-            m_rubik.m_rotateDirection = 1;
+        case '3':            
+            m_rubik.setAndStartRotationFace(Right);
             break;
-        case 'w':
-            m_rubik.m_isRotatingBackX = true;
-            m_rubik.m_rotateDirection = -1;
+        case '4':            
+            m_rubik.setAndStartRotationFace(Left);
             break;
-        case 's':
-            m_rubik.m_isRotatingMidleX = true;
-            m_rubik.m_rotateDirection = -1;
+        case '5':            
+            m_rubik.setAndStartRotationFace(Top);
             break;
-        case 'x':
-            m_rubik.m_isRotatingFrontX = true;
-            m_rubik.m_rotateDirection = -1;
+        case '6':            
+            m_rubik.setAndStartRotationFace(Bothom);
             break;
-        case 'e':
-            m_rubik.m_isRotatingBackY = true;
-            m_rubik.m_rotateDirection = 1;
-            break;
-        case 'd':
-            m_rubik.m_isRotatingMidleY = true;
-            m_rubik.m_rotateDirection = 1;
-            break;
-        case 'c':
-            m_rubik.m_isRotatingFrontY = true;
-            m_rubik.m_rotateDirection = 1;
-            break;
-        case 'r':
-            m_rubik.m_isRotatingBackY = true;
-            m_rubik.m_rotateDirection = -1;
-            break;
-        case 'f':
-            m_rubik.m_isRotatingMidleY = true;
-            m_rubik.m_rotateDirection = -1;
-            break;
-        case 'v':
-            m_rubik.m_isRotatingFrontY = true;
-            m_rubik.m_rotateDirection = -1;
-            break;
-        case 't':
-            m_rubik.m_isRotatingBackZ = true;
-            m_rubik.m_rotateDirection = 1;
-            break;
-        case 'g':
-            m_rubik.m_isRotatingMidleZ = true;
-            m_rubik.m_rotateDirection = 1;
-            break;
-        case 'b':
-            m_rubik.m_isRotatingFrontZ = true;
-            m_rubik.m_rotateDirection = 1;
-            break;
-        case 'y':
-            m_rubik.m_isRotatingBackZ = true;
-            m_rubik.m_rotateDirection = -1;
-            break;
-        case 'h':
-            m_rubik.m_isRotatingMidleZ = true;
-            m_rubik.m_rotateDirection = -1;
-            break;
-        case 'n':
-            m_rubik.m_isRotatingFrontZ = true;
-            m_rubik.m_rotateDirection = -1;
+        case 'd': 
+            m_rubik.changeRotationDirection();
             break;
         default:
             break;
-        }
-    }   */
+    } 
 }

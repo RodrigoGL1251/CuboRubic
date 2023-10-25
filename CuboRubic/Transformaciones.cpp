@@ -16,7 +16,7 @@
     Vector4 finalPosition = Vector4(0, 0, 0, 0);
 
     //Multiplicacion de matrices
-    for (int i = 0; i < sizeof(traslationMatrix); i++)
+    for (int i = 0; i < 4; i++)
     {
         float aux = traslationMatrix[i].x * actualPosition.x;
         aux += traslationMatrix[i].y * actualPosition.y;
@@ -163,7 +163,7 @@ Vector3 Transformaciones::RotateY(float grados, Vector3 position)
     Vector4 finalPosition =  Vector4(0, 0, 0, 0);
 
     //Multiplicacion de matrices
-    for (int i = 0; i < sizeof(rotationMatrix); i++)
+    for (int i = 0; i < 4; i++)
     {
         float aux = rotationMatrix[i].x * actualPosition.x;
         aux += rotationMatrix[i].y * actualPosition.y;
