@@ -55,10 +55,10 @@ Vector3 Transformaciones::RotateX(float grados, Vector3 position)
     float radian = (grados * PI) / 180;
 
     //Matriz de rotacion en x
-    Vector4 rotationMatrix[] = {Vector4(1,      0,            0,      0),
-                                Vector4(0, cos(radian),  sin(radian), 0),
-                                Vector4(0, sin(radian),  cos(radian), 0),
-                                Vector4(0,      0,            0,      1)};
+    Vector4 rotationMatrix[] = {Vector4(1,      0     ,       0     ,       0),
+                                Vector4(0, cos(radian), -sin(radian),       0),
+                                Vector4(0, sin(radian),  cos(radian),       0),
+                                Vector4(0,      0     ,       0     ,       1)};
     //Matriz de posicion actual
     Vector4 actualPosition =  Vector4(position.x, position.y, position.z, 1);
     //Matriz de posicion final
@@ -104,10 +104,10 @@ Vector3 Transformaciones::RotateY(float grados, Vector3 position)
     float radian = (grados * PI) / 180;
 
     //Matriz de rotacion en y
-    Vector4 rotationMatrix[] = { Vector4(cos(radian), 0, sin(radian), 0),
-                                 Vector4(0,            1,         0,         0),
+    Vector4 rotationMatrix[] = { Vector4(cos(radian) , 0, sin(radian), 0),
+                                 Vector4(     0      , 1,      0     , 0),
                                  Vector4(-sin(radian), 0, cos(radian), 0),
-                                 Vector4(0,                  0,         0,         1) };
+                                 Vector4(     0      , 0,      0     , 1)};
     //Matriz de posicion actual
     Vector4 actualPosition = Vector4(position.x, position.y, position.z, 1);
     //Matriz de posicion final
@@ -153,7 +153,7 @@ Vector3 Transformaciones::RotateY(float grados, Vector3 position)
     float radian = (grados * PI) / 180;
 
     //Matriz de rotacion en Z
-    Vector4 rotationMatrix[] = {Vector4(cos(radian), sin(radian), 0, 0),
+    Vector4 rotationMatrix[] = {Vector4(cos(radian),-sin(radian), 0, 0),
                                 Vector4(sin(radian), cos(radian), 0, 0),
                                 Vector4(     0     ,      0     , 1, 0),
                                 Vector4(     0     ,      0     , 0, 1)};

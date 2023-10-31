@@ -75,7 +75,6 @@ void generateCube() {
                     glColor3f(color.x, color.y, color.z);             //color del cuadrado 
                     for (int m = 0; m < 4; m++) {
                         vertex = m_rubik.m_cubeMatriz[i][j][k].m_faces[l].m_vertex[m];
-                        /*cout << vertex.z << " " << vertex.y << " " << vertex.z << endl;*/
                         glVertex3f(vertex.x, vertex.y, vertex.z);   //Coordenadas de los vertices
                     }
                     glEnd();
@@ -83,57 +82,6 @@ void generateCube() {
             }
         }
     }
-
-
-    //float halfSize = size / 2;
-    ////Front
-    //glBegin(GL_POLYGON);                                    //dibujando un cuadrado
-    //glColor3f(0, 0, 1);                                     //color del cuadrado azul
-    //glVertex3f(x - halfSize, y + halfSize, z + halfSize);   //Coordenadas del vertice superior izquierdo
-    //glVertex3f(x - halfSize, y - halfSize, z + halfSize);
-    //glVertex3f(x + halfSize, y - halfSize, z + halfSize);
-    //glVertex3f(x + halfSize, y + halfSize, z + halfSize);
-    //glEnd();
-    ////Left
-    //glBegin(GL_POLYGON);                                    //dibujando un cuadrado
-    //glColor3f(1, 0, 0);                                     //color del cuadrado rojo
-    //glVertex3f(x - halfSize, y + halfSize, z + halfSize);   //Coordenadas del vertice superior izquierdo
-    //glVertex3f(x - halfSize, y + halfSize, z - halfSize);
-    //glVertex3f(x - halfSize, y - halfSize, z - halfSize);
-    //glVertex3f(x - halfSize, y - halfSize, z + halfSize);
-    //glEnd();
-    ////Back
-    //glBegin(GL_POLYGON);                                    //dibujando un cuadrado
-    //glColor3f(0, 1, 0);                                     //color del cuadrado green
-    //glVertex3f(x - halfSize, y + halfSize, z - halfSize);   //Coordenadas del vertice superior izquierdo
-    //glVertex3f(x + halfSize, y + halfSize, z - halfSize);
-    //glVertex3f(x + halfSize, y - halfSize, z - halfSize);
-    //glVertex3f(x - halfSize, y - halfSize, z - halfSize);
-    //glEnd();
-    ////Right
-    //glBegin(GL_POLYGON);                                    //dibujando un cuadrado
-    //glColor3f(1,0.5,1);                                     //color del cuadrado naranja
-    //glVertex3f(x + halfSize, y + halfSize, z + halfSize);   //Coordenadas del vertice superior izquierdo
-    //glVertex3f(x + halfSize, y - halfSize, z + halfSize);
-    //glVertex3f(x + halfSize, y - halfSize, z - halfSize);
-    //glVertex3f(x + halfSize, y + halfSize, z - halfSize);
-    //glEnd();
-    ////Up
-    //glBegin(GL_POLYGON);                                    //dibujando un cuadrado
-    //glColor3f(1, 1, 1);                                     //color del cuadrado blanco
-    //glVertex3f(x - halfSize, y + halfSize, z +halfSize);    //Coordenadas del vertice superior izquierdo
-    //glVertex3f(x + halfSize, y + halfSize, z +halfSize);
-    //glVertex3f(x - halfSize, y + halfSize, z -halfSize);
-    //glVertex3f(x + halfSize, y + halfSize, z -halfSize); 
-    //glEnd();
-    ////Down
-    //glBegin(GL_POLYGON);                                    //dibujando un cuadrado
-    //glColor3f(1, 1, 0);                                     //color del cuadrado amarillo
-    //glVertex3f(x - halfSize, y - halfSize, z + halfSize);   //Coordenadas del vertice superior izquierdo
-    //glVertex3f(x + halfSize, y - halfSize, z + halfSize);
-    //glVertex3f(x + halfSize, y - halfSize, z - halfSize);
-    //glVertex3f(x - halfSize, y - halfSize, z - halfSize);
-    //glEnd();
 }
 
 void input(unsigned char key, int x, int y) {    
