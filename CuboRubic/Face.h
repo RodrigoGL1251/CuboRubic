@@ -13,7 +13,7 @@ enum FaceSide {
 
 class Face
 {
-public :
+public:
 	Face();
 	Face(Vector3 cubePivot, FaceSide faceSide, float size);
 	void generateVertex(Vector3 cubePivot);

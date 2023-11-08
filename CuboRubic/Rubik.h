@@ -16,6 +16,7 @@ public:
 
 	Rubik();
 	Rubik(Vector3 pivot, float size);
+
 	void generateCubeMatrix();
 	void setAndStartRotationFace(FaceSide faceSide);
 	void changeRotationDirection();
