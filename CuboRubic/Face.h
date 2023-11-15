@@ -1,4 +1,5 @@
 #pragma once
+#include <GL/glut.h>
 #include "Vector4.h";
 #include "Vector3.h";
 
@@ -22,5 +23,6 @@ public:
 	Vector3 m_color;
 	Vector3 m_vertex[4]{};
 	float m_size;
+	 
 };
 

@@ -1,7 +1,7 @@
 #include <GL/glut.h>
 #include"Rubik.h"
-#include <ctime>
 #include "Transformaciones.h"
+#include "TextureManager.h"
 
 
 #include <iostream>
@@ -18,7 +18,7 @@ enum DirectionOfRotation {
 
 void display(void);
 void generateCube();
-void input(unsigned char key, int x, int y);
+void inputManager(unsigned char key, int x, int y);
 void update();
 
 DirectionOfRotation directionOfrotation;
@@ -28,6 +28,7 @@ Rubik m_rubik;
 
 int main(int argc, char** argv)
 {
+    TextureManager::getInstance()->loadTextures();
     m_rubik = Rubik(Vector3(), 1);
     glutInit(&argc, argv);                                      //inicia el glut
     glutInitDisplayMode(GLUT_DEPTH| GLUT_DOUBLE | GLUT_RGB);    //Estable ce la pantalla con doble buffer con los colores rgba
@@ -35,9 +36,10 @@ int main(int argc, char** argv)
     glutInitWindowSize(500, 500);                               //Establecemos tamaño de la pantalla
     glutCreateWindow("Cubo Rubik");                             //Nombre de la ventana
     glEnable(GL_DEPTH_TEST);                                    //Permite 3d y rotacion
+    glEnable(GL_TEXTURE_2D);                                    //Activa las texturas
     
     glutDisplayFunc(display);                                   //Se le pasa la funcion para dibujar la pantalla
-    glutKeyboardFunc(input);                                    //Se le pasa la funcion que se usara para la entrada del teclado
+    glutKeyboardFunc(inputManager);                                    //Se le pasa la funcion que se usara para la entrada del teclado
     glutIdleFunc(update);                                       //establece las funciones que se van a estar actualizando
     glutMainLoop();
 
@@ -71,6 +73,8 @@ void generateCube() {
             for (int k = 0; k < 3; k++) {
                 for (int l = 0; l < 6; l++) {
                     color = m_rubik.m_cubeMatriz[i][j][k].m_faces[l].m_color;
+                    
+                    glBindTexture(GL_TEXTURE_2D ,TextureManager::getInstance()->getTextureByIndex(l));
                     glBegin(GL_POLYGON);                                    //dibujando un cuadrado
                     glColor3f(color.x, color.y, color.z);             //color del cuadrado 
                     for (int m = 0; m < 4; m++) {
@@ -84,7 +88,7 @@ void generateCube() {
     }
 }
 
-void input(unsigned char key, int x, int y) {    
+void inputManager(unsigned char key, int x, int y) {    
     if (m_rubik.m_isRotating) {
         return;
     }

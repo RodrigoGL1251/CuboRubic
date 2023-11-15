@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -23,6 +23,7 @@
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rubik.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Transformaciones.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vector4.cpp" />
@@ -31,9 +32,18 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="Rubik.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Transformaciones.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Textures\texture 0.bmp" />
+    <Image Include="..\Textures\texture 1.bmp" />
+    <Image Include="..\Textures\texture 2.bmp" />
+    <Image Include="..\Textures\texture 3.bmp" />
+    <Image Include="..\Textures\texture 4.bmp" />
+    <Image Include="..\Textures\texture 5.bmp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

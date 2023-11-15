@@ -36,6 +36,9 @@
     <ClCompile Include="Face.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector3.h">
@@ -56,5 +59,28 @@
     <ClInclude Include="Face.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Textures\texture 0.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="..\Textures\texture 1.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="..\Textures\texture 2.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="..\Textures\texture 3.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="..\Textures\texture 4.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="..\Textures\texture 5.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>
